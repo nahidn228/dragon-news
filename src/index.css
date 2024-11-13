@@ -7,3 +7,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a.active{
+    background-color: #d6d4d4;
+}
