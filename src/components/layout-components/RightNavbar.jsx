@@ -1,11 +1,13 @@
-
+import FindUs from "../FindUs";
+import SocialLogin from "../SocialLogin";
 
 const RightNavbar = () => {
-    return (
-        <div>
-            <h1>Right Navbar</h1>
-        </div>
-    );
+  return (
+    <div className="space-y-12">
+      <SocialLogin></SocialLogin>
+      <FindUs></FindUs>
+    </div>
+  );
 };
 
 export default RightNavbar;
