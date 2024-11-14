@@ -14,6 +14,7 @@ const Login = () => {
             </label>
             <input
               type="email"
+              name="email"
               placeholder="Email address"
               className="input rounded-none bg-[#F3F3F3]"
               required
@@ -25,6 +26,7 @@ const Login = () => {
             </label>
             <input
               type="password"
+              name="password"
               placeholder="password"
               className="input rounded-none bg-[#F3F3F3]"
               required
