@@ -16,7 +16,7 @@ const NavBar = () => {
   );
   return (
     <div className="">
-      <div className="navbar bg-base-100">
+      <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,7 +49,9 @@ const NavBar = () => {
         </div>
         <div className="navbar-end gap-2">
           <img src={userIcon} alt="" />
-          <Link className="btn btn-neutral rounded-none px-6">Login</Link>
+          <Link to="/auth/login" className="btn btn-neutral rounded-none px-6">
+            Login
+          </Link>
         </div>
       </div>
     </div>

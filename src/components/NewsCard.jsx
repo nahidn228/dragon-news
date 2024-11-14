@@ -30,7 +30,7 @@ const NewsCard = (props = {}) => {
         <img
           src={thumbnail_url}
           alt="thumbnail"
-          className="w-full h-40 object-cover rounded-lg"
+          className="w-full h-80 object-cover rounded-lg"
         />
         <p className="text-sm text-gray-600 mt-2 line-clamp-3">{details}</p>
         <button className="text-red-600 font-semibold mt-2">Read More</button>
@@ -40,10 +40,10 @@ const NewsCard = (props = {}) => {
             {Array.from({ length: 5 }, (_, i) => (
               <FaStar key={i} />
             ))}
-          </div>
           <p className="text-sm text-gray-600 ml-2">
             {rating?.number || "N/A"}
           </p>
+          </div>
           <div className="flex items-center text-gray-600 gap-1">
             <FaEye />
             <p className="text-sm">{total_view || 0}</p>
