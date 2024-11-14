@@ -1,8 +1,11 @@
-// import { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import userIcon from "../assets/user.png";
+import { AuthContext } from "../provider/AuthProvider";
 const NavBar = () => {
-  // const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  // console.log(user);
+
   const links = (
     <>
       <li>
@@ -44,16 +47,28 @@ const NavBar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl"> </a>
+          <a className="btn btn-ghost text-xl"> {user?.email} </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end gap-2">
           <img src={userIcon} alt="" />
-          <Link to="/auth/login" className="btn btn-neutral rounded-none px-6">
-            Login
-          </Link>
+          {user && user?.email ? (
+            <button
+              onClick={logOut}
+              className="btn btn-neutral rounded-none px-6"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/auth/login"
+              className="btn btn-neutral rounded-none px-6"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
