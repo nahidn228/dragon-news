@@ -1,9 +1,14 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
   const { userLogin, setUser } = useContext(AuthContext);
+  const [error, setError] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  console.log(location);
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -17,14 +22,15 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         setUser(user);
+        navigate(location?.state ? location.state : "/");
         alert(" Sign-in Successfully");
         console.log(user);
         // ...
       })
-      .catch((error) => {
-        const errorCode = error.code;
+      .catch((err) => {
+        setError({ ...error, login: err.code });
         // const errorMessage = error.message;
-        alert(errorCode);
+        // alert(errorCode);
       });
   };
   return (
@@ -58,6 +64,11 @@ const Login = () => {
               required
             />
             <label className="label">
+              {error.login && (
+                <p className="text-red-600 text-sm "> {error.login} </p>
+              )}{" "}
+            </label>
+            <label className="label">
               <a href="#" className="label-text-alt link link-hover">
                 Forgot password?
               </a>
@@ -69,7 +80,7 @@ const Login = () => {
         </form>
         <p className="text-sm text-center font-semibold">
           Dont’t Have An Account ?{" "}
-          <Link to="/auth/register" className="text-red-600">
+          <Link state={location} to="/auth/register" className="text-red-600">
             Register
           </Link>{" "}
         </p>
