@@ -10,25 +10,27 @@ import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext();
-// Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  console.log(user);
+  const [loading, setLoading] = useState(true);
 
   //create new user
   const createNewUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   // user Login
   const userLogin = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   //Logout
 
   const logOut = () => {
+    setLoading(true);
     return signOut(auth)
       .then(() => {
         // Sign-out successful.
@@ -44,12 +46,14 @@ const AuthProvider = ({ children }) => {
     setUser,
     createNewUser,
     userLogin,
+    loading,
     logOut,
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       unsubscribe();
