@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import userIcon from "../assets/user.png";
+import { AuthContext } from "../provider/AuthProvider";
 const NavBar = () => {
+  const { user } = useContext(AuthContext);
   const links = (
     <>
       <li>
@@ -42,7 +45,7 @@ const NavBar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl"></a>
+          <a className="btn btn-ghost text-xl"> {user} </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
