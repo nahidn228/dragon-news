@@ -1,4 +1,5 @@
 import { FaEye, FaShareAlt, FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const NewsCard = (props = {}) => {
   const { singleNews } = props || {};
@@ -33,16 +34,21 @@ const NewsCard = (props = {}) => {
           className="w-full h-80 object-cover rounded-lg"
         />
         <p className="text-sm text-gray-600 mt-2 line-clamp-3">{details}</p>
-        <button className="text-red-600 font-semibold mt-2">Read More</button>
+        <Link
+          to={`/news/${singleNews._id}`}
+          className="text-red-600 font-semibold mt-2"
+        >
+          Read More
+        </Link>
 
         <div className="flex items-center justify-between mt-4">
           <div className="flex items-center text-orange-500 gap-1">
             {Array.from({ length: 5 }, (_, i) => (
               <FaStar key={i} />
             ))}
-          <p className="text-sm text-gray-600 ml-2">
-            {rating?.number || "N/A"}
-          </p>
+            <p className="text-sm text-gray-600 ml-2">
+              {rating?.number || "N/A"}
+            </p>
           </div>
           <div className="flex items-center text-gray-600 gap-1">
             <FaEye />

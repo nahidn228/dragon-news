@@ -17,6 +17,7 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         setUser(user);
+        alert(" Sign-in Successfully");
         console.log(user);
         // ...
       })
