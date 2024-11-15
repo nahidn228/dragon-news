@@ -53,7 +53,15 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end gap-2">
-          <img src={userIcon} alt="" />
+          {user && user?.email ? (
+            <div className='flex flex-col items-center'>
+              <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
+              <p>{user?.displayName}</p>
+            </div>
+          ) : (
+            <img src={userIcon} alt="" />
+          )}
+
           {user && user?.email ? (
             <button
               onClick={logOut}
